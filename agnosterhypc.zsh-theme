@@ -290,9 +290,8 @@ prompt_dir() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  local virtualenv_path="$VIRTUAL_ENV"
-  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    local text="$(basename $virtualenv_path)($(python --version | cut -d ' ' -f2))"
+  if [[ -n $PYENV_VERSION ]]; then
+    local text="$PYENV_VERSION($(python --version | cut -d' ' -f2))"
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   fi
 }

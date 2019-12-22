@@ -6,7 +6,7 @@ It currently shows:
 
 * Battery Life (in case of the laptop is not charging)
 * Timestamp
-* nvm & python virtualenv
+* [nvm][] & [pyenv-virtualenv][]
 * Current directory
 * Git status
 * User & Host status
@@ -28,3 +28,6 @@ ZSH_THEME="agnosterhypc"
 [oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
 [Powerline Vim plugin]: https://github.com/Lokaltog/vim-powerline
 [Agnoster Theme]: https://gist.github.com/agnoster/3712874
+[nvm]: https://github.com/nvm-sh/nvm
+[pyenv]: https://github.com/pyenv/pyenv
+[pyenv-virtualenv]: https://github.com/pyenv/pyenv-virtualenv
