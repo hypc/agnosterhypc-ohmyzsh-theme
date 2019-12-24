@@ -298,13 +298,17 @@ prompt_virtualenv() {
 
 # Nvm
 prompt_nvm() {
-  if command -v nvm 1> /dev/null; then
-    prompt_segment black magenta "%{$fg_bold[magenta]%}$(nvm current)%{$fg_no_bold[magenta]%}"
+  if command -v nvm 1>> /dev/null; then
+    local text=$(nvm current)
+    if [[ -n "$NVM_CURRENT_ALIASES" ]]; then
+      text="$text($NVM_CURRENT_ALIASES)"
+    fi
+    prompt_segment black magenta "%{$fg_bold[magenta]%}$text%{$fg_no_bold[magenta]%}"
   fi
 }
 
 prompt_time() {
-  prompt_segment blue white "%{$fg_bold[white]%}%D{%a %e %b - %H:%M}%{$fg_no_bold[white]%}"
+  prompt_segment blue white "%{$fg_bold[white]%}%D{%a %e %b}%{$fg_no_bold[white]%} %{$fg_bold[cyan]%}%D{%H:%M}%{$fg_no_bold[cyan]%}"
 }
 
 # Status:

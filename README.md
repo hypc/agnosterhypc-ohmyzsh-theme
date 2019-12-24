@@ -6,7 +6,7 @@ It currently shows:
 
 * Battery Life (in case of the laptop is not charging)
 * Timestamp
-* [nvm][] & [pyenv-virtualenv][]
+* [nvm][] & [pyenv][]
 * Current directory
 * Git status
 * User & Host status
@@ -15,7 +15,7 @@ It currently shows:
 
 After installing [oh-my-zsh][]
 
-Download the theme [here](http://raw.github.com/hypc/agnosterhypc-ohmyzsh-theme/master/agnosterhypc.zsh-theme)
+Download the theme [here](http://raw.githubusercontent.com/hypc/agnosterhypc-ohmyzsh-theme/master/agnosterhypc.zsh-theme)
 
 Put the file `agnosterhypc.zsh-theme` in `$ZSH_CUSTOM/themes/`
 
