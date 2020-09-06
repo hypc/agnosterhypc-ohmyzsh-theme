@@ -290,7 +290,10 @@ prompt_dir() {
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n $PYENV_VERSION ]]; then
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local text="$(basename $VIRTUAL_ENV)($(python --version | cut -d' ' -f2))"
+    prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
+  elif [[ -n "$PYENV_VERSION" ]]; then
     local text="$PYENV_VERSION($(python --version | cut -d' ' -f2))"
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   fi
