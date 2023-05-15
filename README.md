@@ -6,10 +6,17 @@ It currently shows:
 
 * Battery Life (in case of the laptop is not charging)
 * Timestamp
-* [nvm][] & [pyenv][]
+* [nvm][] & [pyenv][] & [conda][]
 * Current directory
 * Git status
 * User & Host status
+
+## Pre Install
+
+```bash
+# disable changeps1 when used conda
+conda config --set changeps1 false
+```
 
 ## Installing
 
@@ -31,3 +38,4 @@ ZSH_THEME="agnosterhypc"
 [nvm]: https://github.com/nvm-sh/nvm
 [pyenv]: https://github.com/pyenv/pyenv
 [pyenv-virtualenv]: https://github.com/pyenv/pyenv-virtualenv
+[conda]: https://conda.io/

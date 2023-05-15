@@ -285,7 +285,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment cyan white "%{$fg_bold[white]%}%~%{$fg_no_bold[white]%}"
+  prompt_segment blue white "%{$fg_bold[white]%}%~%{$fg_no_bold[white]%}"
 }
 
 # Virtualenv: current working virtualenv
@@ -295,6 +295,14 @@ prompt_virtualenv() {
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   elif [[ -n "$PYENV_VERSION" ]]; then
     local text="$PYENV_VERSION($(python --version | cut -d' ' -f2))"
+    prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
+  fi
+}
+
+# Conda
+prompt_conda() {
+  if command -v conda 1>> /dev/null; then
+    local text="$(conda info -e | grep '*' | cut -d' ' -f1)($(python --version | cut -d' ' -f2))"
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   fi
 }
@@ -311,7 +319,7 @@ prompt_nvm() {
 }
 
 prompt_time() {
-  prompt_segment blue white "%{$fg_bold[white]%}%D{%a %e %b}%{$fg_no_bold[white]%} %{$fg_bold[cyan]%}%D{%H:%M}%{$fg_no_bold[cyan]%}"
+  prompt_segment blue white "%{$fg_bold[white]%}%D{%Y/%m/%d}%{$fg_no_bold[white]%} %{$fg_bold[cyan]%}%D{%H:%M:%S}%{$fg_no_bold[cyan]%}"
 }
 
 # Status:
@@ -337,6 +345,7 @@ build_prompt() {
   prompt_time
   prompt_nvm
   prompt_virtualenv
+  prompt_conda
   prompt_dir
   prompt_git
   prompt_end
