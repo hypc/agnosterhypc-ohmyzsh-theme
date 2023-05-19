@@ -22,14 +22,11 @@ conda config --set changeps1 false
 
 After installing [oh-my-zsh][]
 
-Download the theme [here](http://raw.githubusercontent.com/hypc/agnosterhypc-ohmyzsh-theme/master/agnosterhypc.zsh-theme)
-
-Put the file `agnosterhypc.zsh-theme` in `$ZSH_CUSTOM/themes/`
-
-Configure the theme in your `~/.zshrc` file:
-
 ```bash
-ZSH_THEME="agnosterhypc"
+# Put the file `agnosterhypc.zsh-theme` in `$ZSH_CUSTOM/themes/`:
+wget -O $ZSH_CUSTOM/themes/agnosterhypc.zsh-theme https://raw.githubusercontent.com/hypc/agnosterhypc-ohmyzsh-theme/master/agnosterhypc.zsh-theme
+# Configure the theme in your `~/.zshrc` file:
+sed -i 's/^ZSH_THEME=.*/ZSH_THEME="agnosterhypc"/g' ~/.zshrc
 ```
 
 [oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh

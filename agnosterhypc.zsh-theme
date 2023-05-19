@@ -285,7 +285,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue white "%{$fg_bold[white]%}%~%{$fg_no_bold[white]%}"
+  prompt_segment cyan white "%{$fg_bold[white]%}%~%{$fg_no_bold[white]%}"
 }
 
 # Virtualenv: current working virtualenv
@@ -311,10 +311,12 @@ prompt_conda() {
 prompt_nvm() {
   if command -v nvm 1>> /dev/null; then
     local text=$(nvm current)
-    if [[ -n "$NVM_CURRENT_ALIASES" ]]; then
-      text="$text($NVM_CURRENT_ALIASES)"
+    if [[ "$text" != "none" ]]; then
+      if [[ -n "$NVM_CURRENT_ALIASES" ]]; then
+        text="$text($NVM_CURRENT_ALIASES)"
+      fi
+      prompt_segment black magenta "%{$fg_bold[magenta]%}$text%{$fg_no_bold[magenta]%}"
     fi
-    prompt_segment black magenta "%{$fg_bold[magenta]%}$text%{$fg_no_bold[magenta]%}"
   fi
 }
 
@@ -339,7 +341,7 @@ prompt_status() {
 ## Main prompt
 build_prompt() {
   RETVAL=$?
-  print -n "\n"
+  # print -n "\n"
   prompt_status
   prompt_battery
   prompt_time
