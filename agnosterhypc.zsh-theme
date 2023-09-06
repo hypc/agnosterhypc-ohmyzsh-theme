@@ -302,8 +302,10 @@ prompt_virtualenv() {
 # Conda
 prompt_conda() {
   if command -v conda 1>> /dev/null; then
-    local text="${CONDA_DEFAULT_ENV}($(python --version | cut -d' ' -f2))"
-    prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
+    if [[ "$CONDA_DEFAULT_ENV" != "" ]]; then
+      local text="$CONDA_DEFAULT_ENV($(python --version | cut -d' ' -f2))"
+      prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
+    fi
   fi
 }
 
