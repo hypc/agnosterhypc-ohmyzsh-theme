@@ -11,22 +11,23 @@ It currently shows:
 * Git status
 * User & Host status
 
-## Pre Install
-
-```bash
-# disable changeps1 when used conda
-conda config --set changeps1 false
-```
-
 ## Installing
 
 After installing [oh-my-zsh][]
 
 ```bash
-# Put the file `agnosterhypc.zsh-theme` in `$ZSH_CUSTOM/themes/`:
-wget -O $ZSH_CUSTOM/themes/agnosterhypc.zsh-theme https://raw.githubusercontent.com/hypc/agnosterhypc-ohmyzsh-theme/master/agnosterhypc.zsh-theme
-# Configure the theme in your `~/.zshrc` file:
-sed -i 's/^ZSH_THEME=.*/ZSH_THEME="agnosterhypc"/g' ~/.zshrc
+git clone https://github.com/hypc/agnosterhypc-ohmyzsh-theme.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/agnosterhypc
+
+if [ "$(uname -s)" = "Darwin" ]; then
+    sed -i '' 's|^ZSH_THEME=.*|ZSH_THEME=agnosterhypc/agnosterhypc|g' ~/.zshrc
+else
+    sed -i 's|^ZSH_THEME=.*|ZSH_THEME=agnosterhypc/agnosterhypc|g' ~/.zshrc
+fi
+
+# disable changeps1 if used conda
+if command -v conda > /dev/null; then
+    conda config --set changeps1 false
+fi
 ```
 
 [oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
