@@ -291,10 +291,10 @@ prompt_dir() {
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
-    local text="$(basename $VIRTUAL_ENV)($(python --version | cut -d' ' -f2))"
+    local text="py|$(basename $VIRTUAL_ENV)|$(python --version | cut -d' ' -f2)"
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   elif [[ -n "$PYENV_VERSION" ]]; then
-    local text="$PYENV_VERSION($(python --version | cut -d' ' -f2))"
+    local text="py|$PYENV_VERSION|$(python --version | cut -d' ' -f2)"
     prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
   fi
 }
@@ -303,7 +303,7 @@ prompt_virtualenv() {
 prompt_conda() {
   if command -v conda 1>> /dev/null; then
     if [[ "$CONDA_DEFAULT_ENV" != "" ]]; then
-      local text="$CONDA_DEFAULT_ENV($(python --version | cut -d' ' -f2))"
+      local text="py|$CONDA_DEFAULT_ENV|$(python --version | cut -d' ' -f2)"
       prompt_segment black yellow "%{$fg_bold[yellow]%}$text%{$fg_no_bold[yellow]%}"
     fi
   fi
@@ -312,13 +312,18 @@ prompt_conda() {
 # Nvm
 prompt_nvm() {
   if command -v nvm 1>> /dev/null; then
-    local text=$(nvm current)
+    local text="node|$(nvm current | cut -c2-)"
     if [[ "$text" != "none" ]]; then
-      if [[ -n "$NVM_CURRENT_ALIASES" ]]; then
-        text="$text($NVM_CURRENT_ALIASES)"
-      fi
       prompt_segment black magenta "%{$fg_bold[magenta]%}$text%{$fg_no_bold[magenta]%}"
     fi
+  fi
+}
+
+# Go
+prompt_go() {
+  if command -v go 1>> /dev/null; then
+    local text="go|$(go version | cut -d' ' -f3 | cut -c3-)"
+    prompt_segment black magenta "%{$fg_bold[cyan]%}$text%{$fg_no_bold[cyan]%}"
   fi
 }
 
@@ -347,9 +352,10 @@ build_prompt() {
   prompt_status
   prompt_battery
   prompt_time
-  prompt_nvm
   prompt_virtualenv
   prompt_conda
+  prompt_nvm
+  prompt_go
   prompt_dir
   prompt_git
   prompt_end

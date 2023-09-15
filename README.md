@@ -6,7 +6,7 @@ It currently shows:
 
 * Battery Life (in case of the laptop is not charging)
 * Timestamp
-* [nvm][] & [pyenv][] & [conda][]
+* [nvm][] & [pyenv][] & [conda][] & [go][]
 * Current directory
 * Git status
 * User & Host status
@@ -37,3 +37,4 @@ fi
 [pyenv]: https://github.com/pyenv/pyenv
 [pyenv-virtualenv]: https://github.com/pyenv/pyenv-virtualenv
 [conda]: https://conda.io/
+[go]: https://go.dev/
