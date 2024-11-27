@@ -312,8 +312,8 @@ prompt_conda() {
 # Nvm
 prompt_nvm() {
   if command -v nvm 1>> /dev/null; then
-    local text="node|$(nvm current | cut -c2-)"
-    if [[ "$text" != "none" ]]; then
+    local text="node|$(nvm current)"
+    if [[ "$text" != "node|none" ]]; then
       prompt_segment black magenta "%{$fg_bold[magenta]%}$text%{$fg_no_bold[magenta]%}"
     fi
   fi
